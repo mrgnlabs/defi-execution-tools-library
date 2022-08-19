@@ -3,7 +3,7 @@ use mango::{matching::Book, state::PerpMarket};
 use std::cmp::min;
 
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("HqcuJfLApXYSrEqjrtPJ1YUBzAiBjSDB8UpHCx8Ka83U");
 
 #[program]
 pub mod idontsee {
@@ -20,7 +20,7 @@ pub mod idontsee {
         let order_book = Book::load_checked(
             ctx.accounts.mango_program.key,
             &ctx.accounts.bids,
-            &ctx.accounts.bids,
+            &ctx.accounts.asks,
             &perp_market,
         )
         .unwrap();
@@ -54,6 +54,9 @@ pub mod idontsee {
         } else {
             price_limit > avg_price
         };
+
+        msg!("Long: {} Size: {} Limit: {}", is_long, size, price_limit);
+        msg!("Avg Price: {} Price OOB: {}", avg_price, price_oob);
         
         if price_oob {
             return Err(error!(ErrorCode::BadPrice))
