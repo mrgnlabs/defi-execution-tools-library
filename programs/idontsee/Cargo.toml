@@ -14,10 +14,11 @@ no-idl = []
 no-log-ix-name = []
 cpi = ["no-entrypoint"]
 default = []
+mainnet-beta = []
 
 [profile.release]
 overflow-checks = true
 
 [dependencies]
-anchor-lang = "0.24.2"
+anchor-lang = "0.25.0"
 mango = { git = "https://github.com/blockworks-foundation/mango-v3", package = "mango", features = ["no-entrypoint", "client"] }
